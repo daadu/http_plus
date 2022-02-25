@@ -1,0 +1,21 @@
+# Defines a default set of lint rules enforced for
+# projects at Google. For details and rationale,
+# see https://github.com/dart-lang/pedantic#enabled-lints.
+include: package:pedantic/analysis_options.yaml
+
+analyzer:
+  exclude:
+    # Ignore generated files
+    - '**/*.g.dart'
+    - 'lib/src/generated/*.dart'
+
+linter:
+  rules:
+    # doc-style related: https://dart.dev/guides/language/effective-dart/documentation
+    - package_api_docs
+    - public_member_api_docs
+    - comment_references
+    - slash_for_doc_comments
+    # pub related: https://dart.dev/tools/linter-rules#pub-rules
+    - depend_on_referenced_packages
+    - secure_pubspec_urls
