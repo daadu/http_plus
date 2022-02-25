@@ -15,7 +15,7 @@
 
 `http_plus` is a drop-in replacement for [`http`](https://pub.dev/packages/http) with `HTTP/2`
 goodies! Under the hood, it wraps [http2](https://pub.dev/packages/http2) to make it compatible with
-APIs of `http`. If the server does not support `HTTP/2`, it fallbacks to `HTTP/1.1`.
+APIs of `http`. Additionally, it fallbacks to `HTTP/1.1` if H2 is not supported by the server.
 
 > **CREDIT:** This is a fork of [`http2_client`](https://pub.dev/packages/http2_client) package, which is no longer maintained.
 
