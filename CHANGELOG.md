@@ -19,3 +19,10 @@
 - pubspec: improve description
 - example: added small snippet
 - completed missing API docs
+
+## 0.1.4
+
+- readme: added badge for CI
+- Github issue templates added
+- Github Action for CI and PR added
+- readme: minor improvement
