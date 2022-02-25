@@ -37,9 +37,9 @@ ___Any contribution, idea, criticism or feedback is welcomed.___
 
 ## Todo
 
-- Document API references properly
-- Web platform support
+- Web platform support (use `BrowserClient` directly)
 - Automatic testing
+- Null-safety support
 
 ## Contribute
 

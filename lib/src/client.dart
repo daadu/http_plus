@@ -7,19 +7,55 @@ import 'package:http/io_client.dart';
 import 'package:http2/http2.dart';
 import 'package:http_parser/http_parser.dart';
 
+/// HttpClient that supports HTTP2.
 class HttpPlusClient extends BaseClient {
+  /// Flag to enable HTTP2.
+  ///
+  /// Defaults to `true`.
   final bool enableHttp2;
+
+  /// HTTP1 client that should be used.
+  ///
+  /// If null then new object of [IOClient] with appropriate configuration is
+  /// used.
   final BaseClient http1Client;
+
+  /// [SecurityContext] used when calling [SecureSocket.connect].
   final SecurityContext context;
+
+  /// [BadCertificateCallback] used when calling [SecureSocket.connect].
   final BadCertificateCallback badCertificateCallback;
+
+  /// Timeout [Duration] used when calling [SecureSocket.connect].
   final Duration connectionTimeout;
+
+  /// Automatically decompress response payload.
+  ///
+  /// If set to `true` and value of [HttpHeaders.contentEncodingHeader] in
+  /// response headers is either `gzip` or `deflate` then [GZipCodec.decoder] and
+  /// [ZLibCodec.decoder] is used respectively to transform the response body.
+  ///
+  /// Defaults to `true`.
   final bool autoUncompress;
+
+  /// Keep connections to the server open
+  ///
+  /// Defaults to `true`.
   final bool maintainOpenConnections;
+
+  /// TODO
+  ///
+  /// Defaults to `-1`.
   final int maxOpenConnections;
+
+  /// Enable logging.
+  ///
+  /// Defaults to `false`.
   final bool enableLogging;
 
   final Map<String, ClientTransportConnection> _h2Connections = {};
 
+  /// Create [HttpPlusClient] object.
   HttpPlusClient({
     this.enableHttp2 = true,
     BaseClient http1Client,
@@ -51,8 +87,9 @@ class HttpPlusClient extends BaseClient {
   Future<StreamedResponse> _send(
       BaseRequest request, List<RedirectInfo> redirects) async {
     // if not-enabled or non-HTTPS -> HTTP 1.x
-    if (!enableHttp2 || request.url.scheme != 'https')
+    if (!enableHttp2 || request.url.scheme != 'https') {
       return _sendHttp1(request);
+    }
 
     // get-or-create HTTP2 connection
     final h2Connection =
@@ -68,7 +105,7 @@ class HttpPlusClient extends BaseClient {
   Future<ClientTransportConnection> _getOrCreateHttp2Connection(
       String host, int port) async {
     // get an existing (if any) HTTP2 connection
-    ClientTransportConnection connection = _h2Connections[host];
+    var connection = _h2Connections[host];
 
     // return if connection exists and is open
     if (connection?.isOpen ?? false) {
@@ -221,9 +258,9 @@ class HttpPlusClient extends BaseClient {
       // transform stream if compressed
       var responseStream = body.stream;
       if (autoUncompress) {
-        if (headers[HttpHeaders.contentLengthHeader] == 'gzip') {
+        if (headers[HttpHeaders.contentEncodingHeader] == 'gzip') {
           responseStream = responseStream.transform(gzip.decoder);
-        } else if (headers[HttpHeaders.contentLengthHeader] == 'deflate') {
+        } else if (headers[HttpHeaders.contentEncodingHeader] == 'deflate') {
           responseStream = responseStream.transform(zlib.decoder);
         }
       }
