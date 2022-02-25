@@ -1,10 +1,11 @@
 # http_plus
 
 <p>
+<a href="https://pub.dev/packages/http_plus"><img src="https://img.shields.io/pub/v/http_plus?logo=dart" alt="pub.dev"></a>
+<a href="https://github.com/daadu/http_plus/actions/workflows/ci.yml"><img src="https://github.com/daadu/http_plus/actions/workflows/ci.yml/badge.svg" alt="ci"></a>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors-"><img src="https://img.shields.io/badge/all_contributors-1-orange.svg" alt="All Contributors" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-<a href="https://pub.dev/packages/http_plus"><img src="https://img.shields.io/pub/v/http_plus?logo=dart" alt="pub.dev"></a>
 <a href="https://pub.dev/packages/http_plus/score"><img src="https://badges.bar/http_plus/pub%20points" alt="pub points"></a>
 <a href="https://pub.dev/packages/http_plus/score"><img src="https://badges.bar/http_plus/popularity" alt="popularity"></a>
 <a href="https://pub.dev/packages/http_plus/score"><img src="https://badges.bar/http_plus/likes" alt="likes"></a>
