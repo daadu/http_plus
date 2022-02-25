@@ -21,13 +21,13 @@ class HttpPlusClient extends BaseClient {
   final BaseClient http1Client;
 
   /// [SecurityContext] used when calling [SecureSocket.connect].
-  final SecurityContext context;
+  final SecurityContext? context;
 
   /// [BadCertificateCallback] used when calling [SecureSocket.connect].
-  final BadCertificateCallback badCertificateCallback;
+  final BadCertificateCallback? badCertificateCallback;
 
   /// Timeout [Duration] used when calling [SecureSocket.connect].
-  final Duration connectionTimeout;
+  final Duration? connectionTimeout;
 
   /// Automatically decompress response payload.
   ///
@@ -66,7 +66,7 @@ class HttpPlusClient extends BaseClient {
   /// Create [HttpPlusClient] object.
   HttpPlusClient({
     this.enableHttp2 = true,
-    BaseClient http1Client,
+    BaseClient? http1Client,
     this.context,
     this.badCertificateCallback,
     this.connectionTimeout,
@@ -110,7 +110,7 @@ class HttpPlusClient extends BaseClient {
     return _sendHttp2(request, h2Connection, redirects);
   }
 
-  Future<ClientTransportConnection> _getOrCreateHttp2Connection(
+  Future<ClientTransportConnection?> _getOrCreateHttp2Connection(
       String host, int port) async {
     // get an existing (if any) HTTP2 connection
     var connection = _h2Connections[host];
@@ -145,7 +145,7 @@ class HttpPlusClient extends BaseClient {
     // if maxOpenConnections limit reached -> close some connections
     if (maxOpenConnections > -1) {
       while (_h2Connections.length >= maxOpenConnections) {
-        final oldConnection = _h2Connections.remove(_h2Connections.keys.first);
+        final oldConnection = _h2Connections.remove(_h2Connections.keys.first)!;
         await oldConnection.finish();
       }
     }
@@ -240,7 +240,7 @@ class HttpPlusClient extends BaseClient {
 
         // get location and create new - redirects and request
         final location =
-            request.url.resolve(headers[HttpHeaders.locationHeader]);
+            request.url.resolve(headers[HttpHeaders.locationHeader]!);
         final newRedirects = List<RedirectInfo>.from(redirects)
           ..add(_RedirectInfo(request.method, statusCode, location));
         final newRequest = Request(

@@ -17,7 +17,7 @@ final _client = HttpPlusClient(maxOpenConnections: 8);
 /// [HttpPlusClient.maxOpenConnections] set to 8. The object is shared across
 /// all HTTP-method function provided. For more fine-grained control over the
 /// client, use [HttpPlusClient] directly.
-Future<Response> head(Uri url, {Map<String, String> headers}) =>
+Future<Response> head(Uri url, {Map<String, String>? headers}) =>
     _client.head(url, headers: headers);
 
 /// Sends an HTTP GET request with the given headers to the given URL.
@@ -26,7 +26,7 @@ Future<Response> head(Uri url, {Map<String, String> headers}) =>
 /// [HttpPlusClient.maxOpenConnections] set to 8. The object is shared across
 /// all HTTP-method function provided. For more fine-grained control over the
 /// client, use [HttpPlusClient] directly.
-Future<Response> get(Uri url, {Map<String, String> headers}) =>
+Future<Response> get(Uri url, {Map<String, String>? headers}) =>
     _client.get(url, headers: headers);
 
 /// Sends an HTTP POST request with the given headers and body to the given URL.
@@ -50,7 +50,7 @@ Future<Response> get(Uri url, {Map<String, String> headers}) =>
 /// all HTTP-method function provided. For more fine-grained control over the
 /// client, use [HttpPlusClient] directly.
 Future<Response> post(Uri url,
-        {Map<String, String> headers, Object body, Encoding encoding}) =>
+        {Map<String, String>? headers, Object? body, Encoding? encoding}) =>
     _client.post(url, headers: headers, body: body, encoding: encoding);
 
 /// Sends an HTTP PUT request with the given headers and body to the given URL.
@@ -74,7 +74,7 @@ Future<Response> post(Uri url,
 /// all HTTP-method function provided. For more fine-grained control over the
 /// client, use [HttpPlusClient] directly.
 Future<Response> put(Uri url,
-        {Map<String, String> headers, Object body, Encoding encoding}) =>
+        {Map<String, String>? headers, Object? body, Encoding? encoding}) =>
     _client.put(url, headers: headers, body: body, encoding: encoding);
 
 /// Sends an HTTP PATCH request with the given headers and body to the given
@@ -99,7 +99,7 @@ Future<Response> put(Uri url,
 /// all HTTP-method function provided. For more fine-grained control over the
 /// client, use [HttpPlusClient] directly.
 Future<Response> patch(Uri url,
-        {Map<String, String> headers, Object body, Encoding encoding}) =>
+        {Map<String, String>? headers, Object? body, Encoding? encoding}) =>
     _client.patch(url, headers: headers, body: body, encoding: encoding);
 
 /// Sends an HTTP DELETE request with the given headers to the given URL.
@@ -109,7 +109,7 @@ Future<Response> patch(Uri url,
 /// all HTTP-method function provided. For more fine-grained control over the
 /// client, use [HttpPlusClient] directly.
 Future<Response> delete(Uri url,
-        {Map<String, String> headers, Object body, Encoding encoding}) =>
+        {Map<String, String>? headers, Object? body, Encoding? encoding}) =>
     _client.delete(url, headers: headers, body: body, encoding: encoding);
 
 /// Closes all live connection for the default [HttpPlusClient] client.
