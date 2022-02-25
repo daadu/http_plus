@@ -90,7 +90,6 @@ void main() async {
 
 - Web platform support (use `BrowserClient` directly)
 - Automatic testing
-- Null-safety support
 - Handle HTTP/2 server side push
 - API to check if the request was handled by HTTP/2 client or downgraded
 - Allow user to customize logic for connection re-cycling
