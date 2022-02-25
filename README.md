@@ -94,6 +94,7 @@ void main() async {
 - API to check if the request was handled by HTTP/2 client or downgraded
 - Allow user to customize logic for connection re-cycling
 - API to close connection to particular socket
+- Live web demo
 
 ## Contribute
 
