@@ -13,33 +13,87 @@
 <a href="https://github.com/daadu/http_plus/network"><img src="https://img.shields.io/github/forks/daadu/http_plus?logo=github" alt="GitHub forks"></a>
 </p>
 
-This package provides `HttpPlusClient` which is `BaseClient` (
-of [`http`](https://pub.dev/packages/http)) implementation that supports `HTTP/2` and fallbacks to
-`HTTP/1.1` if the server does not support it. It is meant to be a drop-in replacement
-of `HttpClient`.
+`http_plus` is a drop-in replacement for [`http`](https://pub.dev/packages/http) with `HTTP/2`
+goodies! Under the hood, it wraps [http2](https://pub.dev/packages/http2) to make it compatible with
+APIs of `http`. If the server does not support `HTTP/2`, it fallbacks to `HTTP/1.1`.
 
-> This is built on top of [`http2_client`](https://pub.dev/packages/http2_client) package, which is no longer maintained.
+> **CREDIT:** This is a fork of [`http2_client`](https://pub.dev/packages/http2_client) package, which is no longer maintained.
 
 This package is in active development.
-___Any contribution, idea, criticism or feedback is welcomed.___
+***Any contribution, idea, criticism or feedback is welcomed.***
 
 ## Quick links
 
-|                   |                                           |
-| :---------------: | :----------------------------------------:|
-| __package__       | https://pub.dev/packages/http_plus        |
-| __Git Repo__      | https://github.com/daadu/http_plus        |
-| __Issue Tracker__ | https://github.com/daadu/http_plus/issues |
+|                   |                                                 |
+| :---------------: | :----------------------------------------------:|
+| **Package**       | https://pub.dev/packages/http_plus              |
+| **API Docs**      | https://pub.dev/documentation/http_plus/latest/ |
+| **Git Repo**      | https://github.com/daadu/http_plus              |
+| **Issue Tracker** | https://github.com/daadu/http_plus/issues       |
 
-## Getting started
+## Using
 
-`TODO`
+The easiest way to use this library is via the top-level functions. They allow you to make
+individual HTTP requests with minimal hassle:
+
+```dart
+import 'package:http_plus/http_plus.dart' as http;
+
+void main() async {
+  final url = Uri.https('example.com', '/whatsit/create');
+  final body = {'name': 'doodle', 'color': 'blue'};
+  // Await http post request
+  final response = await http.post(url, body: body);
+  print('Response status: ${response.statusCode}');
+  print('Response body: ${response.body}');
+  // Close all open connection - if not required
+  http.closeAllConnections();
+}
+```
+
+> For more detail on it check API docs of [top-level functions](https://pub.dev/documentation/http_plus/latest/http_plus/http_plus-library.html#functions).
+
+Underneath it uses a default client with `maxOpenConnection` set as `8`, this client is re-used
+among all top-level functions. If you want to have more fine-control over the client, then you can
+define a custom `HttpPlusClient`:
+
+```dart
+import 'package:http_plus/http_plus.dart';
+
+void main() async {
+  final client = HttpPlusClient(
+    enableHttp2: true,
+    context: SecurityContext(withTrustedRoots: true),
+    badCertificateCallback: (cert, host, port) => false,
+    connectionTimeout: Duration(seconds: 15),
+    autoUncompress: true,
+    maintainOpenConnections: true,
+    maxOpenConnections: -1,
+    enableLogging: false,
+  );
+
+  final url = Uri.https('example.com', '/whatsit/create');
+  final body = {'name': 'doodle', 'color': 'blue'};
+  // Await http post request
+  final response = await client.post(url, body: body);
+  print('Response status: ${response.statusCode}');
+  print('Response body: ${response.body}');
+  // Close all open connection
+  client.close();
+}
+```
+
+> For more details on it check API docs of [`HttpPlusClient`](https://pub.dev/documentation/http_plus/latest/http_plus/HttpPlusClient-class.html).
 
 ## Todo
 
 - Web platform support (use `BrowserClient` directly)
 - Automatic testing
 - Null-safety support
+- Handle HTTP/2 server side push
+- API to check if the request was handled by HTTP/2 client or downgraded
+- Allow user to customize logic for connection re-cycling
+- API to close connection to particular socket
 
 ## Contribute
 

@@ -112,5 +112,5 @@ Future<Response> delete(Uri url,
         {Map<String, String> headers, Object body, Encoding encoding}) =>
     _client.delete(url, headers: headers, body: body, encoding: encoding);
 
-/// Closes all live connection for the default [HttpPlusClient] object.
+/// Closes all live connection for the default [HttpPlusClient] client.
 void closeAllConnections() => _client.close();

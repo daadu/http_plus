@@ -38,12 +38,20 @@ class HttpPlusClient extends BaseClient {
   /// Defaults to `true`.
   final bool autoUncompress;
 
-  /// Keep connections to the server open
+  /// Keep connections to the server open.
+  ///
+  /// If set to `false`, then the connection is closed immediately after the
+  /// response is collected.
   ///
   /// Defaults to `true`.
   final bool maintainOpenConnections;
 
-  /// TODO
+  /// Maximum number of connection that can be open at a time.
+  ///
+  /// Set to `-1` to have no limit on number of connections.
+  ///
+  /// If it is set to positive number and the connection limit is reached, then
+  /// the oldest connection is closed and removed.
   ///
   /// Defaults to `-1`.
   final int maxOpenConnections;
