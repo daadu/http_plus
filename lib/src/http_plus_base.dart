@@ -8,7 +8,7 @@ import 'package:http2/http2.dart';
 import 'package:http_parser/http_parser.dart';
 
 class HttpPlusClient extends BaseClient {
-  final bool enabled;
+  final bool enableHttp2;
   final BaseClient http1Client;
   final SecurityContext context;
   final BadCertificateCallback badCertificateCallback;
@@ -21,7 +21,7 @@ class HttpPlusClient extends BaseClient {
   final Map<String, ClientTransportConnection> _h2Connections = {};
 
   HttpPlusClient({
-    this.enabled = true,
+    this.enableHttp2 = true,
     BaseClient http1Client,
     this.context,
     this.badCertificateCallback,
@@ -51,7 +51,8 @@ class HttpPlusClient extends BaseClient {
   Future<StreamedResponse> _send(
       BaseRequest request, List<RedirectInfo> redirects) async {
     // if not-enabled or non-HTTPS -> HTTP 1.x
-    if (!enabled || request.url.scheme != 'https') return _sendHttp1(request);
+    if (!enableHttp2 || request.url.scheme != 'https')
+      return _sendHttp1(request);
 
     // get-or-create HTTP2 connection
     final h2Connection =
@@ -71,7 +72,7 @@ class HttpPlusClient extends BaseClient {
 
     // return if connection exists and is open
     if (connection?.isOpen ?? false) {
-      _log("🎉 HTTP2 reusing connection for $host");
+      _log('🎉 HTTP2 reusing connection for $host');
       return connection;
     }
 
@@ -82,7 +83,7 @@ class HttpPlusClient extends BaseClient {
     }
 
     // create new socket
-    const http2Protocol = "h2";
+    const http2Protocol = 'h2';
     final socket = await SecureSocket.connect(host, port,
         supportedProtocols: [http2Protocol],
         onBadCertificate: (cert) =>
@@ -111,7 +112,7 @@ class HttpPlusClient extends BaseClient {
   }
 
   Future<StreamedResponse> _sendHttp1(BaseRequest request) {
-    _log("HTTP/1.x for ${request.method} ${request.url.toString()}");
+    _log('HTTP/1.x for ${request.method} ${request.url.toString()}');
     return http1Client.send(request);
   }
 
@@ -120,7 +121,7 @@ class HttpPlusClient extends BaseClient {
     ClientTransportConnection connection,
     List<RedirectInfo> redirects,
   ) async {
-    _log("HTTP/2 for ${request.method} ${request.url.toString()}");
+    _log('HTTP/2 for ${request.method} ${request.url.toString()}');
     // finalize request
     final requestStream = request.finalize();
 
@@ -132,16 +133,16 @@ class HttpPlusClient extends BaseClient {
       Header.ascii(':authority', request.url.host),
       // if method-with-data and no content-length and transfer-encoding != chunked
       // -> then add `contentLengthHeader`
-      if ({"PUT", "POST", "PATCH"}.contains(request.method) &&
+      if ({'PUT', 'POST', 'PATCH'}.contains(request.method) &&
           !request.headers.containsKey(HttpHeaders.contentLengthHeader) &&
-          request.headers[HttpHeaders.transferEncodingHeader] != "chunked")
+          request.headers[HttpHeaders.transferEncodingHeader] != 'chunked')
         Header.ascii(
           HttpHeaders.contentLengthHeader,
           request.contentLength.toString(),
         ),
       ...request.headers.keys.map((key) => Header.ascii(
             key.toLowerCase(),
-            request.headers[key] ?? "",
+            request.headers[key] ?? '',
           )),
     ];
 
@@ -198,7 +199,7 @@ class HttpPlusClient extends BaseClient {
         final newRedirects = List<RedirectInfo>.from(redirects)
           ..add(_RedirectInfo(request.method, statusCode, location));
         final newRequest = Request(
-            statusCode == HttpStatus.temporaryRedirect ? request.method : "GET",
+            statusCode == HttpStatus.temporaryRedirect ? request.method : 'GET',
             location)
           ..followRedirects = request.followRedirects
           ..headers.addAll(request.headers)
@@ -222,7 +223,7 @@ class HttpPlusClient extends BaseClient {
       if (autoUncompress) {
         if (headers[HttpHeaders.contentLengthHeader] == 'gzip') {
           responseStream = responseStream.transform(gzip.decoder);
-        } else if (headers[HttpHeaders.contentLengthHeader] == "deflate") {
+        } else if (headers[HttpHeaders.contentLengthHeader] == 'deflate') {
           responseStream = responseStream.transform(zlib.decoder);
         }
       }
