@@ -131,8 +131,9 @@ class HttpPlusClient extends BaseClient {
     const http2Protocol = 'h2';
     final socket = await SecureSocket.connect(host, port,
         supportedProtocols: [http2Protocol],
-        onBadCertificate: (cert) =>
-            badCertificateCallback?.call(cert, host, port),
+        onBadCertificate: badCertificateCallback != null
+            ? (cert) => badCertificateCallback!.call(cert, host, port)
+            : null,
         context: context,
         timeout: connectionTimeout);
 
