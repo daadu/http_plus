@@ -1,7 +1,7 @@
 name: http_plus
 description: >-
   package:http compatible client that can speak HTTP/2, maintain connections and fallback to HTTP/1.1.
-version: 0.1.4
+version: 0.2.0
 homepage: https://github.com/daadu/http_plus
 
 environment:

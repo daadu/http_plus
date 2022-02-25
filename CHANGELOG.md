@@ -26,3 +26,7 @@
 - Github issue templates added
 - Github Action for CI and PR added
 - readme: minor improvement
+
+# 0.2.0
+
+- migrated to null-safety
