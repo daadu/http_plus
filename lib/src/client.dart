@@ -61,6 +61,15 @@ class HttpPlusClient extends BaseClient {
   /// Defaults to `false`.
   final bool enableLogging;
 
+  /// Default client instance used by top-level functions.
+  ///
+  /// This client is shared across all top-level HTTP-method functions provided
+  /// by the library.
+  ///
+  /// [maxOpenConnections] is set to `8`, to limit resources.
+  static final HttpPlusClient defaultClient =
+      HttpPlusClient(maxOpenConnections: 8);
+
   final Map<String, ClientTransportConnection> _h2Connections = {};
 
   /// Create [HttpPlusClient] object.

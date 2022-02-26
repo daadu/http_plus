@@ -10,25 +10,25 @@ import 'src/client.dart';
 
 export 'src/client.dart';
 
-final _client = HttpPlusClient(maxOpenConnections: 8);
-
 /// Sends an HTTP HEAD request with the given headers to the given URL.
 ///
-/// This uses a default [HttpPlusClient] object with
-/// [HttpPlusClient.maxOpenConnections] set to 8. The object is shared across
-/// all HTTP-method function provided. For more fine-grained control over the
-/// client, use [HttpPlusClient] directly.
+/// This uses the shared [HttpPlusClient.defaultClient] instance for making HTTP
+/// request.
+///
+/// For more fine-grained control over the client, create and use
+/// [HttpPlusClient] directly.
 Future<Response> head(Uri url, {Map<String, String>? headers}) =>
-    _client.head(url, headers: headers);
+    HttpPlusClient.defaultClient.head(url, headers: headers);
 
 /// Sends an HTTP GET request with the given headers to the given URL.
 ///
-/// This uses a default [HttpPlusClient] object with
-/// [HttpPlusClient.maxOpenConnections] set to 8. The object is shared across
-/// all HTTP-method function provided. For more fine-grained control over the
-/// client, use [HttpPlusClient] directly.
+/// This uses the shared [HttpPlusClient.defaultClient] instance for making HTTP
+/// requests.
+///
+/// For more fine-grained control over the client, create and use
+/// [HttpPlusClient] directly.
 Future<Response> get(Uri url, {Map<String, String>? headers}) =>
-    _client.get(url, headers: headers);
+    HttpPlusClient.defaultClient.get(url, headers: headers);
 
 /// Sends an HTTP POST request with the given headers and body to the given URL.
 ///
@@ -46,13 +46,15 @@ Future<Response> get(Uri url, {Map<String, String>? headers}) =>
 ///
 /// [encoding] defaults to [utf8].
 ///
-/// This uses a default [HttpPlusClient] object with
-/// [HttpPlusClient.maxOpenConnections] set to 8. The object is shared across
-/// all HTTP-method function provided. For more fine-grained control over the
-/// client, use [HttpPlusClient] directly.
+/// This uses the shared [HttpPlusClient.defaultClient] instance for making HTTP
+/// requests.
+///
+/// For more fine-grained control over the client, create and use
+/// [HttpPlusClient] directly.
 Future<Response> post(Uri url,
         {Map<String, String>? headers, Object? body, Encoding? encoding}) =>
-    _client.post(url, headers: headers, body: body, encoding: encoding);
+    HttpPlusClient.defaultClient
+        .post(url, headers: headers, body: body, encoding: encoding);
 
 /// Sends an HTTP PUT request with the given headers and body to the given URL.
 ///
@@ -70,13 +72,15 @@ Future<Response> post(Uri url,
 ///
 /// [encoding] defaults to [utf8].
 ///
-/// This uses a default [HttpPlusClient] object with
-/// [HttpPlusClient.maxOpenConnections] set to 8. The object is shared across
-/// all HTTP-method function provided. For more fine-grained control over the
-/// client, use [HttpPlusClient] directly.
+/// This uses the shared [HttpPlusClient.defaultClient] instance for making HTTP
+/// requests.
+///
+/// For more fine-grained control over the client, create and use
+/// [HttpPlusClient] directly.
 Future<Response> put(Uri url,
         {Map<String, String>? headers, Object? body, Encoding? encoding}) =>
-    _client.put(url, headers: headers, body: body, encoding: encoding);
+    HttpPlusClient.defaultClient
+        .put(url, headers: headers, body: body, encoding: encoding);
 
 /// Sends an HTTP PATCH request with the given headers and body to the given
 /// URL.
@@ -95,23 +99,27 @@ Future<Response> put(Uri url,
 ///
 /// [encoding] defaults to [utf8].
 ///
-/// This uses a default [HttpPlusClient] object with
-/// [HttpPlusClient.maxOpenConnections] set to 8. The object is shared across
-/// all HTTP-method function provided. For more fine-grained control over the
-/// client, use [HttpPlusClient] directly.
+/// This uses the shared [HttpPlusClient.defaultClient] instance for making HTTP
+/// requests.
+///
+/// For more fine-grained control over the client, create and use
+/// [HttpPlusClient] directly.
 Future<Response> patch(Uri url,
         {Map<String, String>? headers, Object? body, Encoding? encoding}) =>
-    _client.patch(url, headers: headers, body: body, encoding: encoding);
+    HttpPlusClient.defaultClient
+        .patch(url, headers: headers, body: body, encoding: encoding);
 
 /// Sends an HTTP DELETE request with the given headers to the given URL.
 ///
-/// This uses a default [HttpPlusClient] object with
-/// [HttpPlusClient.maxOpenConnections] set to 8. The object is shared across
-/// all HTTP-method function provided. For more fine-grained control over the
-/// client, use [HttpPlusClient] directly.
+/// This uses the shared [HttpPlusClient.defaultClient] instance for making HTTP
+/// requests.
+///
+/// For more fine-grained control over the client, create and use
+/// [HttpPlusClient] directly.
 Future<Response> delete(Uri url,
         {Map<String, String>? headers, Object? body, Encoding? encoding}) =>
-    _client.delete(url, headers: headers, body: body, encoding: encoding);
+    HttpPlusClient.defaultClient
+        .delete(url, headers: headers, body: body, encoding: encoding);
 
 /// Sends an HTTP GET request with the given headers to the given URL and
 /// returns a Future that completes to the body of the response as a [String].
@@ -119,12 +127,13 @@ Future<Response> delete(Uri url,
 /// The Future will emit a [ClientException] if the response doesn't have a
 /// success status code.
 ///
-/// This uses a default [HttpPlusClient] object with
-/// [HttpPlusClient.maxOpenConnections] set to 8. The object is shared across
-/// all HTTP-method function provided. For more fine-grained control over the
-/// client, use [HttpPlusClient] directly.
+/// This uses the shared [HttpPlusClient.defaultClient] instance for making HTTP
+/// requests.
+///
+/// For more fine-grained control over the client, create and use
+/// [HttpPlusClient] directly.
 Future<String> read(Uri url, {Map<String, String>? headers}) =>
-    _client.read(url, headers: headers);
+    HttpPlusClient.defaultClient.read(url, headers: headers);
 
 /// Sends an HTTP GET request with the given headers to the given URL and
 /// returns a Future that completes to the body of the response as a list of
@@ -133,12 +142,13 @@ Future<String> read(Uri url, {Map<String, String>? headers}) =>
 /// The Future will emit a [ClientException] if the response doesn't have a
 /// success status code.
 ///
-/// This uses a default [HttpPlusClient] object with
-/// [HttpPlusClient.maxOpenConnections] set to 8. The object is shared across
-/// all HTTP-method function provided. For more fine-grained control over the
-/// client, use [HttpPlusClient] directly.
+/// This uses the shared [HttpPlusClient.defaultClient] instance for making HTTP
+/// requests.
+///
+/// For more fine-grained control over the client, create and use
+/// [HttpPlusClient] directly.
 Future<Uint8List> readBytes(Uri url, {Map<String, String>? headers}) =>
-    _client.readBytes(url, headers: headers);
+    HttpPlusClient.defaultClient.readBytes(url, headers: headers);
 
-/// Closes all live connection for the default [HttpPlusClient] client.
-void closeAllConnections() => _client.close();
+/// Closes all live connection for the [HttpPlusClient.defaultClient].
+void closeAllConnections() => HttpPlusClient.defaultClient.close();
