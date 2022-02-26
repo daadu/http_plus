@@ -91,7 +91,7 @@ void main() async {
 - Web platform support (use `BrowserClient` directly)
 - Automatic testing
 - Handle HTTP/2 server side push
-- API to check if the request was handled by HTTP/2 client or downgraded
+- API for basic stats for each request - HTTP/2 vs 1.1, Connection Reuse vs New, etc
 - Allow user to customize logic for connection re-cycling
 - API to close connection to particular socket
 - Live web demo
