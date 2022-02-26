@@ -30,3 +30,9 @@
 # 0.2.0
 
 - migrated to null-safety
+
+# 0.2.1
+
+- readme: remove null-safety from TODO
+- added `read` and `readBytes` top-level functions
+- making the "default shared client" public via `HttpPlusClient.defaultClient`
