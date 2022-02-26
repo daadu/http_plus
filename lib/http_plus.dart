@@ -2,6 +2,7 @@
 library http_plus;
 
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:http/http.dart';
 
@@ -111,6 +112,33 @@ Future<Response> patch(Uri url,
 Future<Response> delete(Uri url,
         {Map<String, String>? headers, Object? body, Encoding? encoding}) =>
     _client.delete(url, headers: headers, body: body, encoding: encoding);
+
+/// Sends an HTTP GET request with the given headers to the given URL and
+/// returns a Future that completes to the body of the response as a [String].
+///
+/// The Future will emit a [ClientException] if the response doesn't have a
+/// success status code.
+///
+/// This uses a default [HttpPlusClient] object with
+/// [HttpPlusClient.maxOpenConnections] set to 8. The object is shared across
+/// all HTTP-method function provided. For more fine-grained control over the
+/// client, use [HttpPlusClient] directly.
+Future<String> read(Uri url, {Map<String, String>? headers}) =>
+    _client.read(url, headers: headers);
+
+/// Sends an HTTP GET request with the given headers to the given URL and
+/// returns a Future that completes to the body of the response as a list of
+/// bytes.
+///
+/// The Future will emit a [ClientException] if the response doesn't have a
+/// success status code.
+///
+/// This uses a default [HttpPlusClient] object with
+/// [HttpPlusClient.maxOpenConnections] set to 8. The object is shared across
+/// all HTTP-method function provided. For more fine-grained control over the
+/// client, use [HttpPlusClient] directly.
+Future<Uint8List> readBytes(Uri url, {Map<String, String>? headers}) =>
+    _client.readBytes(url, headers: headers);
 
 /// Closes all live connection for the default [HttpPlusClient] client.
 void closeAllConnections() => _client.close();

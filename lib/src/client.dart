@@ -84,7 +84,7 @@ class HttpPlusClient extends BaseClient {
 
   void _log(String message) {
     if (enableLogging) {
-      print(message);
+      print('[http_plus] $message');
     }
   }
 
@@ -117,7 +117,7 @@ class HttpPlusClient extends BaseClient {
 
     // return if connection exists and is open
     if (connection?.isOpen ?? false) {
-      _log('🎉 HTTP2 reusing connection for $host');
+      _log('🎉 HTTP/2 reusing connection for $host');
       return connection;
     }
 
