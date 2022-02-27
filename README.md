@@ -26,7 +26,7 @@ This package is in active development.
 ## Quick links
 
 |                   |                                                 |
-| :---------------: | :----------------------------------------------:|
+| ----------------- | ------------------------------------------------|
 | **Package**       | https://pub.dev/packages/http_plus              |
 | **API Docs**      | https://pub.dev/documentation/http_plus/latest/ |
 | **Git Repo**      | https://github.com/daadu/http_plus              |
