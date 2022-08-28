@@ -1,3 +1,11 @@
+## 0.2.2
+
+- docs(readme): fix bage links
+- chore:(changelog) inverted order
+- CHANGELOG: fix formatiing
+- readme: fix table alignment
+- readme: refined a TODO
+
 ## 0.2.1
 
 - readme: remove null-safety from TODO
