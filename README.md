@@ -6,9 +6,9 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors-"><img src="https://img.shields.io/badge/all_contributors-1-orange.svg" alt="All Contributors" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-<a href="https://pub.dev/packages/http_plus/score"><img src="https://badges.bar/http_plus/pub%20points" alt="pub points"></a>
-<a href="https://pub.dev/packages/http_plus/score"><img src="https://badges.bar/http_plus/popularity" alt="popularity"></a>
-<a href="https://pub.dev/packages/http_plus/score"><img src="https://badges.bar/http_plus/likes" alt="likes"></a>
+<a href="https://pub.dev/packages/http_plus/score"><img src="https://img.shields.io/pub/points/http_plus?logo=dart" alt="pub points"></a>
+<a href="https://pub.dev/packages/http_plus/score"><img src="https://img.shields.io/pub/popularity/http_plus?logo=dart" alt="popularity"></a>
+<a href="https://pub.dev/packages/http_plus/score"><img src="https://img.shields.io/pub/likes/http_plus?logo=dart" alt="likes"></a>
 <a href="https://github.com/daadu/http_plus/issues"><img src="https://img.shields.io/github/issues/daadu/http_plus?logo=github" alt="GitHub issues"></a>
 <a href="https://github.com/daadu/http_plus/stargazers"><img src="https://img.shields.io/github/stars/daadu/http_plus?logo=github" alt="GitHub stars"></a>
 <a href="https://github.com/daadu/http_plus/network"><img src="https://img.shields.io/github/forks/daadu/http_plus?logo=github" alt="GitHub forks"></a>
