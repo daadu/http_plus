@@ -1,3 +1,7 @@
+## 0.2.3
+
+- chore: upgraded dependency package version (#2)
+
 ## 0.2.2
 
 - docs(readme): fix bage links

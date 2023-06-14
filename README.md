@@ -4,7 +4,7 @@
 <a href="https://pub.dev/packages/http_plus"><img src="https://img.shields.io/pub/v/http_plus?logo=dart" alt="pub.dev"></a>
 <a href="https://github.com/daadu/http_plus/actions/workflows/ci.yml"><img src="https://github.com/daadu/http_plus/actions/workflows/ci.yml/badge.svg" alt="ci"></a>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<a href="#contributors-"><img src="https://img.shields.io/badge/all_contributors-1-orange.svg" alt="All Contributors" /></a>
+<a href="#contributors-"><img src="https://img.shields.io/badge/all_contributors-3-orange.svg" alt="All Contributors" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <a href="https://pub.dev/packages/http_plus/score"><img src="https://img.shields.io/pub/points/http_plus?logo=dart" alt="pub points"></a>
 <a href="https://pub.dev/packages/http_plus/score"><img src="https://img.shields.io/pub/popularity/http_plus?logo=dart" alt="popularity"></a>
@@ -123,6 +123,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://bhikadia.com/"><img src="https://avatars.githubusercontent.com/u/4963236?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Harsh Bhikadia</b></sub></a><br /><a href="https://github.com/daadu/http_plus/commits?author=daadu" title="Code">💻</a> <a href="#ideas-daadu" title="Ideas, Planning, & Feedback">🤔</a></td>
+     <td align="center"><a href="https://jaffaketchup.dev/"><img src="https://avatars.githubusercontent.com/u/58115698?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Luka S</b></sub></a><br /><a href="https://github.com/daadu/http_plus/commits?author=JaffaKetchup" title="Code">💻</a></td>
+     <td align="center"><a href="https://github.com/busslina"><img src="https://avatars.githubusercontent.com/u/73592852?v=4?s=100" width="100px;" alt=""/><br /><sub><b>busslina</b></sub></a><br /><a href="https://github.com/daadu/http_plus/commits?author=busslina" title="Code">💻</a></td>
   </tr>
 </table>
 

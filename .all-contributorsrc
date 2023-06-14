@@ -19,6 +19,24 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "JaffaKetchup",
+      "name": "Luka S",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58115698?v=4",
+      "profile": "https://jaffaketchup.dev/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "busslina",
+      "name": "busslina",
+      "avatar_url": "https://avatars.githubusercontent.com/u/73592852?v=4",
+      "profile": "https://github.com/busslina",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
