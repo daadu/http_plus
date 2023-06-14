@@ -5,7 +5,7 @@ version: 0.2.3
 homepage: https://github.com/daadu/http_plus
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.12.0 <4.0.0'
 
 dependencies:
   http: ^1.0.0
